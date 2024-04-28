@@ -3,9 +3,9 @@
 
 #include <aes.hpp>
 #include <HttpRequest.hpp>
-#include <Module.hpp>
 #include <Pattern.hpp>
 #include <Process.hpp>
+#include <ProcessHandle.hpp>
 #include <string.hpp>
 
 using namespace soup;
@@ -13,7 +13,7 @@ using namespace soup;
 static const uint8_t key[16] = { 76, 69, 79, 45, 65, 76, 69, 67, 9, 69, 79, 45, 65, 76, 69, 67 };
 static const uint8_t iv[16] = { 49, 50, 70, 71, 66, 51, 54, 45, 76, 69, 51, 45, 113, 61, 57, 0 };
 
-[[nodiscard]] static std::string gruzzleNonce(const Module& mod)
+[[nodiscard]] static std::string gruzzleNonce(const ProcessHandle& mod)
 {
 	std::cout << "Gruzzling";
 	std::unordered_map<std::string, int> candidates{};
