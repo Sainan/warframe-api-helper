@@ -1,2 +1,4 @@
 int/
 *.exe
+*.json
+*.dat
