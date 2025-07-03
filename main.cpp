@@ -19,9 +19,9 @@ static const uint8_t iv[16] = { 49, 50, 70, 71, 66, 51, 54, 45, 76, 69, 51, 45, 
 	std::cout << "Gruzzling";
 	std::unordered_map<std::string, int> candidates{};
 	const auto pattern = Pattern("6E 6F 6E 63 65 3D"); // nonce=
-	for (const auto& r : mod.getAllocations())
+	for (const auto& ai : mod.getAllocations())
 	{
-		if (auto res = mod.externalScan(r, pattern))
+		if (auto res = mod.externalScan(ai.range, pattern))
 		{
 			res = res.add(6);
 			std::string nonce;
