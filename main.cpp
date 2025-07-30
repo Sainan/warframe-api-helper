@@ -63,20 +63,26 @@ int main()
 	if (!proc)
 	{
 		std::cout << "Process not found." << std::endl;
+#if SOUP_WINDOWS
 		system("pause > nul");
+#endif
 		return 1;
 	}
 	auto mod = proc->open();
 	SOUP_IF_UNLIKELY (!mod)
 	{
 		std::cout << "Failed to open process." << std::endl;
+#if SOUP_WINDOWS
 		system("pause > nul");
+#endif
 		return 2;
 	}
 	auto authz = gruzzleAuthz(*mod);
 	SOUP_IF_UNLIKELY (authz.empty())
 	{
+#if SOUP_WINDOWS
 		system("pause > nul");
+#endif
 		return 3;
 	}
 	std::cout << authz << std::endl;
@@ -87,7 +93,9 @@ int main()
 	SOUP_IF_UNLIKELY (!res)
 	{
 		std::cout << "Request failed." << std::endl;
+#if SOUP_WINDOWS
 		system("pause > nul");
+#endif
 		return 5;
 	}
 	auto inventory = std::move(res->body);
@@ -95,7 +103,9 @@ int main()
 	SOUP_IF_UNLIKELY (!jr)
 	{
 		std::cout << "Received an invalid response." << std::endl;
+#if SOUP_WINDOWS
 		system("pause > nul");
+#endif
 		return 6;
 	}
 	string::toFile("inventory.json", jr->encodePretty());
@@ -107,6 +117,8 @@ int main()
 	);
 	string::toFile("lastData.dat", inventory);
 	std::cout << "Saved to inventory.json & lastData.dat in working directory." << std::endl;
+#if SOUP_WINDOWS
 	system("pause > nul");
+#endif
 	return 0;
 }
