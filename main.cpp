@@ -60,6 +60,12 @@ static const uint8_t iv[16] = { 49, 50, 70, 71, 66, 51, 54, 45, 76, 69, 51, 45, 
 int main()
 {
 	auto proc = Process::get("Warframe.x64.exe");
+#if !SOUP_WINDOWS
+	if (!proc)
+	{
+		proc = Process::get("Warframe.x64.ex");
+	}
+#endif
 	if (!proc)
 	{
 		std::cout << "Process not found." << std::endl;
