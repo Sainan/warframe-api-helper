@@ -8,6 +8,7 @@
 #include <Process.hpp>
 #include <ProcessHandle.hpp>
 #include <string.hpp>
+#include <Uri.hpp>
 
 using namespace soup;
 
@@ -94,7 +95,7 @@ int main()
 	std::cout << authz << std::endl;
 	std::cout << "Downloading inventory... ";
 	// Note: Could also use api.warframe.com
-	HttpRequest hr("mobile.warframe.com", "/api/inventory.php" + authz);
+	HttpRequest hr(Uri("https://mobile.warframe.com/api/inventory.php" + authz));
 	auto res = hr.execute();
 	SOUP_IF_UNLIKELY (!res)
 	{
